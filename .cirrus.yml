@@ -1,0 +1,23 @@
+env:
+    GRADLE_OPTS: "-Dorg.gradle.console=plain -Dorg.gradle.daemon=false"
+
+container:
+    image: cirrusci/android-sdk:29
+    cpu: 8
+    memory: 24G
+
+build_task:
+    gradle_cache:
+        folder: ~/.gradle/caches
+    assemble_script: ./gradlew :app:assembleDebug
+    lint_script: ./gradlew :app:lintDebug
+    always:
+        android-lint_artifacts:
+          path: app/build/reports/lint-results-debug.xml
+          type: text/xml
+          format: android-lint
+    cleanup_before_cache_script:
+        - rm -rf ~/.gradle/caches/$GRADLE_VERSION/
+        - rm -rf ~/.gradle/caches/transforms-1
+        - rm -rf ~/.gradle/caches/journal-1
+        - rm -rf ~/.gradle/caches/jars-3/*/buildSrc.jar
