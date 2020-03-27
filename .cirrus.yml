@@ -1,0 +1,5 @@
+container:
+    image: cirrusci/android-sdk:29
+
+assemble_task:
+    assemble_script: ./gradlew :app:assembleDebug
