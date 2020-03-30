@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="example">Unused string to show Android Lint integration with Cirrus CI</string>
+</resources>
